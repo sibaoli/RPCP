@@ -100,7 +100,7 @@ SegmentationParameterForm::accept()
 		ok_ = false;
 		return;
 	}
-	this->done(0);
+	this->done(1);
 	ok_ = true;
 }
 

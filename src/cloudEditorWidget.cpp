@@ -437,7 +437,6 @@ CloudEditorWidget::segmentation()
 	SegmentationParameterForm form;
 	if (form.exec() == QDialog::Accepted)
 	{
-		form.exec();
 		boost::shared_ptr<SegmentationCommand> c(new SegmentationCommand(selection_ptr_,
 			cloud_ptr_, form.getNumNbrsNormal(), form.getMinClusterSize(), form.getMaxClusterSize(),
 			form.getNumNbrsSeg(), form.getDevNormalThresh(), form.getDevCurThresh()));
