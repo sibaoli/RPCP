@@ -220,11 +220,11 @@ MainWindow::createActions ()
           SLOT(denoise()));
 
   segmentation_action_ = new QAction(QIcon(icon_path + "seg.png"),
-	  tr("Segmentation"), action_group_);
+	  tr("Segmentation"), this);
   segmentation_action_->setShortcut(tr("G"));
   connect(segmentation_action_, SIGNAL(triggered()), cloud_editor_widget_,
 	  SLOT(segmentation()));
-  segmentation_action_->setCheckable(false);
+  //segmentation_action_->setCheckable(false);
 
   select_action_ = new QAction(QIcon(icon_path+"click.png"),
                                tr("Point Selection"), action_group_);

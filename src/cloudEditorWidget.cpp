@@ -306,11 +306,13 @@ CloudEditorWidget::denoise ()
   if (!cloud_ptr_)
     return;
   DenoiseParameterForm form;
-  form.exec();
-  boost::shared_ptr<DenoiseCommand> c(new DenoiseCommand(selection_ptr_,
-    cloud_ptr_, form.getMeanK(), form.getStdDevThresh()));
-  command_queue_ptr_->execute(c);
-  update();
+  if (form.exec() == QDialog::Accepted)
+  {
+	  boost::shared_ptr<DenoiseCommand> c(new DenoiseCommand(selection_ptr_,
+		  cloud_ptr_, form.getMeanK(), form.getStdDevThresh()));
+	  command_queue_ptr_->execute(c);
+	  update();
+  }
 }
 
 void
@@ -433,12 +435,15 @@ CloudEditorWidget::segmentation()
 	if (!cloud_ptr_)
 		return;
 	SegmentationParameterForm form;
-	form.exec();
-	boost::shared_ptr<SegmentationCommand> c(new SegmentationCommand(selection_ptr_,
-		cloud_ptr_, form.getNumNbrsNormal(), form.getMinClusterSize(), form.getMaxClusterSize(),
-		form.getNumNbrsSeg(), form.getDevNormalThresh(), form.getDevCurThresh()));
-	command_queue_ptr_->execute(c);
-	update();
+	if (form.exec() == QDialog::Accepted)
+	{
+		form.exec();
+		boost::shared_ptr<SegmentationCommand> c(new SegmentationCommand(selection_ptr_,
+			cloud_ptr_, form.getNumNbrsNormal(), form.getMinClusterSize(), form.getMaxClusterSize(),
+			form.getNumNbrsSeg(), form.getDevNormalThresh(), form.getDevCurThresh()));
+		command_queue_ptr_->execute(c);
+		update();
+	}
 }
 
 void
