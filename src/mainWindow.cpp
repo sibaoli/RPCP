@@ -128,6 +128,9 @@ MainWindow::initWindow ()
   createActions();
   createMenus();
   createToolBars();
+  status_bar_ = new QStatusBar(this);
+  status_bar_->setObjectName(QString::fromUtf8("statusbar"));
+  this->setStatusBar(status_bar_);
   setWindowTitle(tr("Robust Point Cloud Processing Platform"));
   resize(window_width_, window_height_);
 }

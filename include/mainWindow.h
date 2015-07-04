@@ -228,6 +228,9 @@ class MainWindow : public QMainWindow
     /// the tool bar containing all the visualization function buttons
     QToolBar *view_tool_bar_;
 
+	/// the status bar
+	QStatusBar *status_bar_;
+
     /// the width of the main window.
     int window_width_;
 
