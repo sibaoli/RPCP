@@ -80,6 +80,9 @@ class CloudEditorWidget : public QGLWidget
     void
     save ();
 
+	/// @brief Savas the segementation result to a seg file(ASCII).
+	void save_seg();
+
     /// @brief Toggles the blend mode used to render the non-selected points
     void
     toggleBlendMode ();

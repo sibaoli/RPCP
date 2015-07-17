@@ -238,6 +238,7 @@ exit /b %1
 if %errorlevel% neq 0 goto :VCEnd</Command>
     </CustomBuild>
     <ClInclude Include="include\pasteCommand.h" />
+    <ClInclude Include="include\pointCluster.h" />
     <ClInclude Include="include\segmentationCommand.h" />
     <CustomBuild Include="include\segmentationParameterForm.h">
       <Command Condition="'$(Configuration)|$(Platform)'=='Release|x64'">setlocal

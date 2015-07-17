@@ -141,6 +141,9 @@ class MainWindow : public QMainWindow
     /// action for saving file
     QAction *save_action_;
 
+	/// action for saving segmentation result
+	QAction *save_seg_action_;
+
     /// action for copying selected points
     QAction *copy_action_;
 

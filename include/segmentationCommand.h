@@ -3,8 +3,8 @@
 /// http://www.pointclouds.org/documentation/tutorials/region_growing_segmentation.php
 ///
 
-/// @file segmentationCommand.cpp
-/// @details the implementation of the class SegmentationCommand
+/// @file segmentationCommand.h
+/// @details provides functionalities for segment the point cloud by region growing
 /// @author Bao Li
 
 #ifndef SEGMENTATION_COMMAND_H_

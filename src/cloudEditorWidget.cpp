@@ -167,6 +167,11 @@ CloudEditorWidget::save ()
   }
 }
 
+void CloudEditorWidget::save_seg()
+{
+
+}
+
 void
 CloudEditorWidget::toggleBlendMode ()
 {

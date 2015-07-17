@@ -152,6 +152,11 @@ MainWindow::createActions ()
   save_action_ -> setShortcut(tr("Ctrl+S"));
   connect(save_action_,SIGNAL(triggered()),cloud_editor_widget_,SLOT(save()));
 
+  save_seg_action_ = new QAction(QIcon(icon_path + "save.png"), tr("Save seg result.."),
+	  this);
+  save_seg_action_->setShortcut(tr("Ctrl+P"));
+  connect(save_seg_action_, SIGNAL(triggered()), cloud_editor_widget_, SLOT(save_seg()));
+
   exit_action_ = new QAction(tr("Exit..."), this);
   exit_action_ -> setShortcut(tr("Ctrl+Q"));
   connect(exit_action_, SIGNAL(triggered()), this, SLOT(close()));
