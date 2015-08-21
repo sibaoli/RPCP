@@ -105,6 +105,9 @@
     <ClCompile Include="moc\moc_segmentationParameterForm.cxx">
       <Filter>moc</Filter>
     </ClCompile>
+    <ClCompile Include="src\pointCluster.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\cloud.h">

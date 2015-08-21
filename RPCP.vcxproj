@@ -157,6 +157,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\mainWindow.cpp" />
     <ClCompile Include="src\pasteCommand.cpp" />
+    <ClCompile Include="src\pointCluster.cpp" />
     <ClCompile Include="src\segmentationCommand.cpp" />
     <ClCompile Include="src\segmentationParameterForm.cpp" />
     <ClCompile Include="src\select1DTool.cpp" />
