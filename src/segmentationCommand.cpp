@@ -58,41 +58,60 @@ SegmentationCommand::execute ()
   std::vector <pcl::PointIndices> clusters;
   reg.extract(clusters);
 
+  if (clusters.size() == 0)
+  {
+	  qDebug() << "No segmentation occured." << clusters.size();
+	  return;
+  }
+
   qDebug() << "The number of clusters after segmentation" << clusters.size();
   std::string status = cloud_ptr_->getStat();
-  qDebug() << "The info of original point cloud is :" << status.c_str();
+  qDebug() << "The info of original point cloud is:" << status.c_str();
+  qDebug() << "The size of each cluster is: ";
+  for (size_t i = 0; i < clusters.size(); i++)
+	  qDebug() << clusters[i].indices.size() << " ";
+  qDebug() << endl;
 
-  srand(static_cast<unsigned int> (time(0)));
-  std::vector<unsigned char> colors;
-  for (size_t i_segment = 0; i_segment < clusters.size(); i_segment++)
-  {
-	  colors.push_back(static_cast<unsigned char> (rand() % 256));
-	  colors.push_back(static_cast<unsigned char> (rand() % 256));
-	  colors.push_back(static_cast<unsigned char> (rand() % 256));
-  }
+  pcl::PointCloud <pcl::PointXYZRGB>::Ptr colored_cloud = reg.getColoredCloud();
 
   for (size_t i_point = 0; i_point < cloud_ptr_->size(); i_point++)
   {
-	  (*cloud_ptr_)[i_point].r = 255;
-	  (*cloud_ptr_)[i_point].g = 0;
-	  (*cloud_ptr_)[i_point].b = 0;
+	  (*cloud_ptr_)[i_point].r = colored_cloud->at(i_point).r;
+	  (*cloud_ptr_)[i_point].g = colored_cloud->at(i_point).g;
+	  (*cloud_ptr_)[i_point].b = colored_cloud->at(i_point).b;
   }
+  ////This is actually the internal code of pcl::RegionGrowing, help us to solve the R/B problem
+  //srand(static_cast<unsigned int> (time(0)));
+  //std::vector<unsigned char> colors;
+  //for (size_t i_segment = 0; i_segment < clusters.size(); i_segment++)
+  //{
+	 // colors.push_back(static_cast<unsigned char> (rand() % 256));
+	 // colors.push_back(static_cast<unsigned char> (rand() % 256));
+	 // colors.push_back(static_cast<unsigned char> (rand() % 256));
+  //}
 
-  std::vector< pcl::PointIndices >::iterator i_segment;
-  int next_color = 0;
-  for (i_segment = clusters.begin(); i_segment != clusters.end(); i_segment++)
-  {
-	  std::vector<int>::iterator i_point;
-	  for (i_point = i_segment->indices.begin(); i_point != i_segment->indices.end(); i_point++)
-	  {
-		  int index;
-		  index = *i_point;
-		  (*cloud_ptr_)[index].r = colors[3 * next_color];
-		  (*cloud_ptr_)[index].g = colors[3 * next_color + 1];
-		  (*cloud_ptr_)[index].b = colors[3 * next_color + 2];
-	  }
-	  next_color++;
-  }
+  //for (size_t i_point = 0; i_point < cloud_ptr_->size(); i_point++)
+  //{
+	 // (*cloud_ptr_)[i_point].r = 0;
+	 // (*cloud_ptr_)[i_point].g = 0;
+	 // (*cloud_ptr_)[i_point].b = 255;
+  //}
+
+  //std::vector< pcl::PointIndices >::iterator i_segment;
+  //int next_color = 0;
+  //for (i_segment = clusters.begin(); i_segment != clusters.end(); i_segment++)
+  //{
+	 // std::vector<int>::iterator i_point;
+	 // for (i_point = i_segment->indices.begin(); i_point != i_segment->indices.end(); i_point++)
+	 // {
+		//  int index;
+		//  index = *i_point;
+		//  (*cloud_ptr_)[index].r = colors[3 * next_color];
+		//  (*cloud_ptr_)[index].g = colors[3 * next_color + 1];
+		//  (*cloud_ptr_)[index].b = colors[3 * next_color + 2];
+	 // }
+	 // next_color++;
+  //}
 }
 
 void

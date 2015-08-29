@@ -446,6 +446,9 @@ CloudEditorWidget::segmentation()
 			cloud_ptr_, form.getNumNbrsNormal(), form.getMinClusterSize(), form.getMaxClusterSize(),
 			form.getNumNbrsSeg(), form.getDevNormalThresh(), form.getDevCurThresh()));
 		command_queue_ptr_->execute(c);
+		is_colored_ = true;
+		color_scheme_ = COLOR_BY_RGB;
+		swapRBValues();//Because PCL use bgra order in the union, if use GL_COLOR_ARRAY, R and B are flipped. Direct use of them is OK.
 		update();
 	}
 }

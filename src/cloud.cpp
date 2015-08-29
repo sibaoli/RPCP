@@ -229,7 +229,7 @@ void
 Cloud::drawWithRGB () const
 {
   glEnableClientState(GL_COLOR_ARRAY);
-  glColorPointer(3, GL_UNSIGNED_BYTE, sizeof(Point3D),
+  glColorPointer(4, GL_UNSIGNED_BYTE, sizeof(Point3D),
                  &(cloud_.points[0].b));
   draw();
 }
